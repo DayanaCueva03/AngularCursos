@@ -1,8 +1,56 @@
 <!-- Página de Cursos -->
 <section class="cursos-page">
     <div class="container">
-        <!-- Título de la sección -->
-        <h1 class="section-title">Nuestros Cursos</h1>
+        <!-- Sección informativa -->
+        <div class="info-section">
+            <h1 class="section-title">Descubre Nuestros Cursos</h1>
+            <p class="intro-text">
+                Explora una amplia variedad de cursos diseñados para potenciar tu aprendizaje y mejorar tus habilidades.
+                Desde tecnología y diseño hasta matemáticas y deportes, tenemos algo para todos.
+                ¡Empieza hoy mismo y lleva tu conocimiento al siguiente nivel!
+            </p>
+        </div>
+
+        <!-- Cómo funciona -->
+        <div class="how-it-works">
+            <h2>Cómo Funciona</h2>
+            <div class="steps">
+                <div class="step">
+                    <i class="fas fa-search"></i>
+                    <h3>Explora Cursos</h3>
+                    <p>Descubre cursos en diferentes categorías y elige el que más te interese.</p>
+                </div>
+                <div class="step">
+                    <i class="fas fa-user-check"></i>
+                    <h3>Regístrate</h3>
+                    <p>Crea una cuenta y accede a contenido exclusivo de nuestros expertos.</p>
+                </div>
+                <div class="step">
+                    <i class="fas fa-play-circle"></i>
+                    <h3>Empieza a Aprender</h3>
+                    <p>Accede a clases interactivas y material de apoyo para mejorar tus habilidades.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Beneficios de estudiar con nosotros -->
+        <div class="benefits">
+            <div class="benefit-card">
+                <i class="fas fa-laptop-code"></i>
+                <h3>Aprendizaje Online</h3>
+                <p>Accede a nuestros cursos desde cualquier dispositivo, en cualquier momento.</p>
+            </div>
+            <div class="benefit-card">
+                <i class="fas fa-chalkboard-teacher"></i>
+                <h3>Instructores Expertos</h3>
+                <p>Clases impartidas por profesionales con años de experiencia en su campo.</p>
+            </div>
+            <div class="benefit-card">
+                <i class="fas fa-certificate"></i>
+                <h3>Certificación</h3>
+                <p>Recibe un certificado al completar cada curso y mejora tu perfil profesional.</p>
+            </div>
+        </div>
 
         <!-- Filtros de categorías -->
         <div class="filters">
@@ -15,20 +63,59 @@
             <button class="filter-btn" (click)="filterCourses('matematicas')" [class.active]="currentFilter === 'matematicas'">
                 Matemáticas
             </button>
-            <button class="filter-btn" (click)="filterCourses('idiomas')" [class.active]="currentFilter === 'idiomas'">
-                Idiomas
+            <button class="filter-btn" (click)="filterCourses('otros')" [class.active]="currentFilter === 'otros'">
+                Otros
             </button>
         </div>
 
         <!-- Lista de cursos -->
         <div class="courses-grid">
             <div *ngFor="let course of filteredCourses" class="course-card">
-                <h3>{{ course.title }}</h3>
+                <img [src]="course.image" class="course-image" [alt]="course.name">
+                <h3>{{ course.name }}</h3>
                 <p><strong>Categoría:</strong> {{ course.category }}</p>
-                <p><strong>Duración:</strong> {{ course.duration }}</p>
+                <p><strong>Precio:</strong> ${{ course.price }}</p>
                 <p>{{ course.description }}</p>
-                <button class="btn btn-primary" (click)="downloadCourseTemplate(course)">Descargar Plantilla</button>
+                <button class="btn btn-primary">Ver Curso</button>
             </div>
+        </div>
+
+        <!-- Preguntas Frecuentes -->
+        <div class="faq-section">
+            <h2>Preguntas Frecuentes</h2>
+            <div class="faq">
+                <h3>📌 ¿Los cursos tienen certificado?</h3>
+                <p>Sí, al completar cada curso recibirás un certificado digital.</p>
+            </div>
+            <div class="faq">
+                <h3>📌 ¿Puedo acceder al contenido en cualquier momento?</h3>
+                <p>Sí, los cursos están disponibles 24/7 para que aprendas a tu ritmo.</p>
+            </div>
+            <div class="faq">
+                <h3>📌 ¿Cuánto tiempo tengo para completar un curso?</h3>
+                <p>El acceso es ilimitado. Puedes avanzar a tu propio ritmo.</p>
+            </div>
+        </div>
+
+        <!-- Sección de contacto -->
+        <div class="contact-section">
+            <h2>¿Tienes dudas? Contáctanos</h2>
+            <p>Estamos aquí para ayudarte. Envíanos un mensaje y te responderemos lo antes posible.</p>
+            <form class="contact-form">
+                <label for="name">Nombre:</label>
+                <input type="text" id="name" placeholder="Tu nombre" required>
+        
+                <label for="email">Correo Electrónico:</label>
+                <input type="email" id="email" placeholder="Tu correo electrónico" required>
+        
+                <label for="message">Mensaje:</label>
+                <textarea id="message" rows="4" placeholder="Escribe tu mensaje aquí..." required></textarea>
+        
+                <button type="submit" class="btn btn-submit">Enviar Mensaje</button>
+            </form>
+
+            
+
         </div>
     </div>
 </section>

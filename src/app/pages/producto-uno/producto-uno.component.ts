@@ -1,31 +1,37 @@
 import { Component } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms'; 
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
-
-export interface CanDeactivateComponent {
-  form: any; 
-}
 @Component({
   selector: 'app-producto-uno',
-  standalone: true,
-  imports: [],
   templateUrl: './producto-uno.component.html',
-  styleUrl: './producto-uno.component.css'
+  styleUrls: ['./producto-uno.component.css']
 })
-export class ProductoUnoComponent implements CanDeactivateComponent {
+export class ProductoUnoComponent {
   form: FormGroup;
-
-
+  selectedFile: File | null = null;
 
   constructor(private fb: FormBuilder) {
     this.form = this.fb.group({
-      fullname: [''],
-      email: [''],
-      phone: [''],
-      address: ['']
+      name: ['', Validators.required],
+      description: ['', Validators.required],
+      price: ['', [Validators.required, Validators.min(1)]],
+      category: ['', Validators.required],
+      image: [null, Validators.required]
     });
   }
-  
 
+  onFileSelected(event: any) {
+    if (event.target.files.length > 0) {
+      this.selectedFile = event.target.files[0];
+      this.form.patchValue({ image: this.selectedFile });
+    }
+  }
 
+  onSubmit() {
+    if (this.form.valid) {
+      console.log('Formulario Enviado:', this.form.value);
+    } else {
+      console.log('Formulario inválido');
+    }
+  }
 }

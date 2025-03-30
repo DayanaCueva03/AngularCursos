@@ -10,19 +10,26 @@ import { DetalleproductoComponent } from './pages/detalleproducto/detalleproduct
 import { CartFormComponent } from './pages/cart-form/cart-form.component';
 import { ProductsComponent } from './pages/products/products.component';
 import { ProductFormComponent } from './pages/product-form/product-form.component';
+import { canActivate, redirectUnauthorizedTo } from "@angular/fire/auth-guard";
 import { NgModule } from '@angular/core';
 import { permissionsGuard } from './guards/permissions.guard';
-import { warningsGuard } from './guards/warnings.guard';
+
 
 export const routes: Routes = [
     
     {path: '', redirectTo: 'home', pathMatch: 'full' },
     {path: 'home', component: HomeComponent},
     {path: 'nosotros', component: NosotrosComponent},
-    {path:'producto-uno', component: ProductoUnoComponent, canDeactivate: [warningsGuard], canActivate:[permissionsGuard]},
+    {
+        path:'producto-uno', component: ProductoUnoComponent,
+        ...canActivate(() => redirectUnauthorizedTo(["/login"]))
+    },
     {path:'cart-form', component: CartFormComponent},
-    { path: 'edit-product/:id', component: ProductFormComponent },
-    {path:'products', component: ProductsComponent, canActivate:[permissionsGuard]},
+    {path: 'edit-product/:id', component: ProductFormComponent },
+    {
+        path:'products', component: ProductsComponent,
+        ...canActivate(() => redirectUnauthorizedTo(["/login"]))
+    },
     {path:'products/:id', component: DetalleproductoComponent},
     {path:'registro', component: RegistroComponent},
     {path:'recursos', component: RecursosComponent},
