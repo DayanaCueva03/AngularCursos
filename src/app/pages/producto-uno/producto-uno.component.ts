@@ -1,10 +1,9 @@
 import { Component } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms'; // Asegúrate de que estos importes sean correctos
-
+import { FormBuilder, FormGroup } from '@angular/forms'; 
 
 
 export interface CanDeactivateComponent {
-  form: any; // Asegúrate de usar el tipo correcto aquí, como FormGroup
+  form: any; 
 }
 @Component({
   selector: 'app-producto-uno',
@@ -20,7 +19,6 @@ export class ProductoUnoComponent implements CanDeactivateComponent {
 
   constructor(private fb: FormBuilder) {
     this.form = this.fb.group({
-      // Define tus campos de formulario aquí
       fullname: [''],
       email: [''],
       phone: [''],

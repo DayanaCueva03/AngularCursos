@@ -1,15 +1,24 @@
 <div class="container mt-5">
-    <h2>Formulario del Carrito</h2>
-    <form>
-      <div class="form-group">
-        <label for="quantity">Cantidad</label>
-        <input type="number" id="quantity" class="form-control" placeholder="Ingrese la cantidad">
-      </div>
-      <div class="form-group mt-3">
-        <label for="deliveryAddress">Dirección de Entrega</label>
-        <input type="text" id="deliveryAddress" class="form-control" placeholder="Ingrese la dirección de entrega">
-      </div>
-      <button type="submit" class="btn btn-primary mt-3">Confirmar Pedido</button>
-    </form>
+  <div *ngIf="successMessage" class="alert alert-success alert-dismissible fade show" role="alert">
+    {{ successMessage }}
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
   </div>
-  
+
+  <h2>Añadir Curso al Carrito</h2>
+  <form [formGroup]="cartForm" (ngSubmit)="onSubmit()">
+    <div class="mb-3">
+      <label for="productId" class="form-label">Selecciona un Curso</label>
+      <select id="productId" formControlName="productId" class="form-control" required>
+        <option value="" disabled>Selecciona un curso</option>
+        <option *ngFor="let product of products" [value]="product.id">{{ product.name }} - ${{ product.price }}</option>
+      </select>
+    </div>
+    <div class="mb-3">
+      <label for="quantity" class="form-label">Cantidad</label>
+      <input type="number" id="quantity" formControlName="quantity" class="form-control" required min="1">
+    </div>
+    <div class="d-grid gap-2">
+      <button type="submit" class="btn btn-primary">Añadir al Carrito</button>
+    </div>
+  </form>
+</div>

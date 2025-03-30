@@ -34,4 +34,25 @@ export class ProductService {
     const product=this.products.find(p => p.id == id);
     return of(product);
   }
+
+
+  createProduct(newProduct: any): Observable<any> {
+    newProduct.id = this.products.length + 1; 
+    this.products.push(newProduct);
+    return of(newProduct);
+  }
+  updateProduct(updatedProduct: any): Observable<any> {
+    const index = this.products.findIndex(p => p.id === updatedProduct.id);
+    if (index !== -1) {
+      this.products[index] = updatedProduct;
+    }
+    return of(updatedProduct);
+  }
+
+ 
+  deleteProduct(id: number): Observable<any> {
+    this.products = this.products.filter(p => p.id !== id);
+    return of(true);
+  }
 }
+
