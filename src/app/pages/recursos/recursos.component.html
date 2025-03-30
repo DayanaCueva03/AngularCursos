@@ -1,0 +1,34 @@
+<!-- Página de Cursos -->
+<section class="cursos-page">
+    <div class="container">
+        <!-- Título de la sección -->
+        <h1 class="section-title">Nuestros Cursos</h1>
+
+        <!-- Filtros de categorías -->
+        <div class="filters">
+            <button class="filter-btn" (click)="filterCourses('all')" [class.active]="currentFilter === 'all'">
+                Todos
+            </button>
+            <button class="filter-btn" (click)="filterCourses('tecnologia')" [class.active]="currentFilter === 'tecnologia'">
+                Tecnología
+            </button>
+            <button class="filter-btn" (click)="filterCourses('matematicas')" [class.active]="currentFilter === 'matematicas'">
+                Matemáticas
+            </button>
+            <button class="filter-btn" (click)="filterCourses('idiomas')" [class.active]="currentFilter === 'idiomas'">
+                Idiomas
+            </button>
+        </div>
+
+        <!-- Lista de cursos -->
+        <div class="courses-grid">
+            <div *ngFor="let course of filteredCourses" class="course-card">
+                <h3>{{ course.title }}</h3>
+                <p><strong>Categoría:</strong> {{ course.category }}</p>
+                <p><strong>Duración:</strong> {{ course.duration }}</p>
+                <p>{{ course.description }}</p>
+                <button class="btn btn-primary" (click)="downloadCourseTemplate(course)">Descargar Plantilla</button>
+            </div>
+        </div>
+    </div>
+</section>

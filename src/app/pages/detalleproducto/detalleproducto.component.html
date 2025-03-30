@@ -1,0 +1,22 @@
+
+
+
+<div class="container mt-5">
+  <div *ngIf="product" class="product-card">
+    <div class="row">
+      <div class="col-md-6">
+        <div class="product-image-container">
+          <img [src]="product.image" class="img-fluid product-image" [alt]="product.name">
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="product-info">
+          <h1 class="product-title">{{ product.name }}</h1>
+          <p class="product-description">{{ product.description }}</p>
+          <p class="product-price">Price: <span>${{ product.price }}</span></p>
+          <button class="btn btn-primary btn-lg" (click)="addToCart()">Añadir al Carrito</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
